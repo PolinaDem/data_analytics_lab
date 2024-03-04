@@ -109,6 +109,7 @@ from #PercentPopulationVaccinated
 
 
 -- Create view to store data for later visualisations
+	
 USE PortfolioProject
 GO
 create view PercentPopulationVaccinated as
