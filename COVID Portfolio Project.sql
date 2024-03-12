@@ -56,7 +56,7 @@ select dea.continent, dea.location, dea.date, dea.population, vac.new_vaccinatio
 , SUM(convert(int, vac.new_vaccinations)) OVER (partition by dea.location order by dea.location, 
 dea.date) as RollingPeopleVaccinated
 from PortfolioProject..CovidDeaths dea
-join PortfolioProject..CovidVaccionations vac
+join PortfolioProject..CovidVaccinations vac
 	on  dea.location = vac.location
 	and dea.date = vac.date
 where dea.continent is not NULL
@@ -73,7 +73,7 @@ select dea.continent, dea.location, dea.date, dea.population, vac.new_vaccinatio
 dea.date) as RollingPeopleVaccinated
 --, (RollingPeopleVaccinated/population)*100
 from PortfolioProject..CovidDeaths dea
-join PortfolioProject..CovidVaccionations vac
+join PortfolioProject..CovidVaccinations vac
 	on  dea.location = vac.location
 	and dea.date = vac.date
 where dea.continent is not NULL
@@ -101,7 +101,7 @@ select dea.continent, dea.location, dea.date, dea.population, vac.new_vaccinatio
 dea.date) as RollingPeopleVaccinated
 --, (RollingPeopleVaccinated/population)*100
 from PortfolioProject..CovidDeaths dea
-join PortfolioProject..CovidVaccionations vac
+join PortfolioProject..CovidVaccinations vac
 	on  dea.location = vac.location
 	and dea.date = vac.date
 select *, (RollingPeopleVaccinated/population)*100
@@ -118,7 +118,7 @@ select dea.continent, dea.location, dea.date, dea.population, vac.new_vaccinatio
 dea.date) as RollingPeopleVaccinated
 --, (RollingPeopleVaccinated/population)*100
 from PortfolioProject..CovidDeaths dea
-join PortfolioProject..CovidVaccionations vac
+join PortfolioProject..CovidVaccinations vac
 	on  dea.location = vac.location
 	and dea.date = vac.date
 where dea.continent is not NULL
