@@ -157,18 +157,18 @@ set SoldAsVacant = case when SoldAsVacant = 'Y' then 'Yes'
 
 with RowNumCTE as(
 select *,                                                                                       -- see duplicates in the table
-	ROW_NUMBER() over (                                                                         -- "over" adds a unique number to every row
-	partition by ParcelID,                                                                      -- split the rows into groups, where each group has the same values in the columns
+	ROW_NUMBER() over (                                                                     -- "over" adds a unique number to every row
+	partition by ParcelID,                                                                  -- split the rows into groups, where each group has the same values in the columns
 				PropertyAddress,
 				SalePrice,
 				SaleDate,
 				LegalReference
 				order by UniqueID
-				) row_num                                                                       -- add a new column with amount of duplicates for each row
+				) row_num                                                       -- add a new column with amount of duplicates for each row
 
 from PortfolioProject.dbo.Data_for_Data_Cleaning
 )
-delete                                                                                         -- remove duplicates
+delete                                                                                          -- remove duplicates
 from RowNumCTE
 where row_num > 1                                                                               -- the row must have at least 1 duplicate to be selected, so the first original row won't be updated
 --order by ParcelID
